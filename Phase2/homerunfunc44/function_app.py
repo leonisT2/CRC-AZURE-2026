@@ -8,8 +8,7 @@ app = func.FunctionApp()
 
 @app.route(route="theshow")
 def table_in_binding(req: func.HttpRequest):
-    # message = json.loads(inputJSON) #no longer needed
-    connection_string = os.environ["HomerunCosmosConnection"] # this is stored in local.settings.json file
+    connection_string = os.environ["HomerunCosmosConnection"] 
 
     with TableServiceClient.from_connection_string(conn_str=connection_string) as table_service_client:
 
@@ -30,13 +29,4 @@ def table_in_binding(req: func.HttpRequest):
         
         json_string = json.dumps(new_homer_dict)    #output is {"Homeruns": int} which future JS reads with data.Homeruns
         
-        return func.HttpResponse(json_string)   
-    # @app.table_input(arg_name="inputJSON",
-#                  connection="HomerunCosmosConnection",
-#                  table_name="homeruntable",
-#                  row_key='Astros',
-#                  partition_key="Yordan")
-
-#     homers = message[0]['Homeruns']
-#     new_count = homers + 1
-#     return new_count
+        return func.HttpResponse(json_string)  
