@@ -6,7 +6,7 @@ import os
  
 app = func.FunctionApp()
 
-@app.route(route="theshow")
+@app.route(route="theshow", auth_level=func.AuthLevel.ANONYMOUS)
 def table_in_binding(req: func.HttpRequest):
     connection_string = os.environ["HomerunCosmosConnection"] 
 
